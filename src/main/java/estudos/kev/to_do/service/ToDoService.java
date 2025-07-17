@@ -52,6 +52,7 @@ public class ToDoService {
         ToDo todo = toDoRepository.findById(idTarefa)
             .orElseThrow(() -> new RuntimeException("Tarefa não encontrada"));
 
+
         ToDoDto toDoDto = new ToDoDto();
 
 
