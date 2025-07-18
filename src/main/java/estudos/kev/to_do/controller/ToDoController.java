@@ -12,7 +12,7 @@ import java.time.Month;
 import java.util.List;
 
 @RestController
-@RequestMapping("/tarefa")
+@RequestMapping("/task")
 public class ToDoController {
 
     private final ToDoService toDoService;
@@ -64,14 +64,17 @@ public class ToDoController {
         return toDoService.buscarPorId(idTarefa);
     }
 
-    @PostMapping
-    public ToDo salvarToDo(ToDo novoToDo){
+
+    @PostMapping("/salvar")
+    public ToDo salvarToDo(@RequestBody ToDo novoToDo){
         try{
             return toDoService.salvarToDo(novoToDo);
         }catch (IllegalArgumentException e){
-            throw new ResponseStatusException(HttpStatus.CONFLICT);
+            var mensagemErro = e.getMessage();
+            throw new ResponseStatusException(HttpStatus.CONFLICT, mensagemErro);
         }
     }
+
 
 
 }

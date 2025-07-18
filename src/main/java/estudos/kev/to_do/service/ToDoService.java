@@ -6,6 +6,7 @@ import estudos.kev.to_do.componentes.ToDoValidator;
 import estudos.kev.to_do.model.entitie.ToDo;
 import estudos.kev.to_do.model.enums.ToDoStatus;
 import estudos.kev.to_do.repository.ToDoRepository;
+import org.apache.el.util.Validation;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
@@ -87,6 +88,7 @@ public class ToDoService {
     // atualiza os dados do to-do
     public ToDo atualizarToDo(ToDo todo){
         toDoRepository.save(todo);
+        mailService.enviar("To-do atualizzado com sucesso");
         return todo;
     }
 
@@ -98,6 +100,8 @@ public class ToDoService {
     }
 
     public ToDo salvarToDo(ToDo todo){
+        toDoValidator.validation(todo);
+        todo.setDataInicio(OffsetDateTime.now());
         return toDoRepository.save(todo);
     }
 

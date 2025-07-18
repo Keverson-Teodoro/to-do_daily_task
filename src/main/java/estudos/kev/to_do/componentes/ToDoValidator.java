@@ -2,7 +2,9 @@ package estudos.kev.to_do.componentes;
 
 import estudos.kev.to_do.model.entitie.ToDo;
 import estudos.kev.to_do.repository.ToDoRepository;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ToDoValidator {
 
     private final ToDoRepository toDoRepository;
