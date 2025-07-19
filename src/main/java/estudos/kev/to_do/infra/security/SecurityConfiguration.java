@@ -27,6 +27,8 @@ public class SecurityConfiguration {
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // define as politicas da nossa applicação
                 .authorizeHttpRequests(autorize -> autorize  // autoriza as requisições, // declarando qual das requisições http serão autorizada
+                        .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
                         .requestMatchers(HttpMethod.POST, "/tarefa").hasRole("Admin") // definindo que qualquer request do tipo do post passada na url declarada, vai ter um tipo de permissão
                         .anyRequest().authenticated() // todas as requisições que nao forem as que eu definit acima,  vai estar apenas autenticado
 
