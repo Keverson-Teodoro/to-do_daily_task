@@ -25,9 +25,6 @@ public class User implements UserDetails {
     @Column(name = "id_user")
     private long id;
 
-    @Column(name = "name")
-    private String UserName;
-
     @Column(name = "login")
     private String login;
 
@@ -44,11 +41,10 @@ public class User implements UserDetails {
 
     }
 
-
-    public User(String name, String login, String password) {
-        this.UserName = name;
+    public User(String login, String password, UserRole userRole) {
         this.login = login;
         this.password = password;
+        this.userRole = userRole;
     }
 
     @Override

@@ -44,6 +44,7 @@ public class SecurityConfiguration {
 
     // criptografa a senha do usuario
     // para validar, usa-se a verificação dos hash da senha que esta no banco,  com a que o usuario requisitou!
+    // toda vez que registrar-mos os usuarios vamos hashear a senha e guardar no banco, na verificação o spring compara os hash`s
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
